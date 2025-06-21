@@ -60,17 +60,14 @@ const getBookById = async (req: Request, res: Response, next: NextFunction) => {
 }
 
 // Update Book
-const updateBook = async (req: Request, res: Response, next: NextFunction) => {
+const updateBookById = async (req: Request, res: Response, next: NextFunction) => {
     try {
 
         const bookId = req.params.bookId
         const updatedBody = req.body
 
         if (!updatedBody || Object.keys(updatedBody).length === 0) {
-            return res.status(400).json({
-                success: false,
-                message: "No data provided for update",
-            });
+            throw new Error('No data provided for update')
         }
 
         const data = await Book.findByIdAndUpdate(bookId, updatedBody, { new: true, runValidators: true })
@@ -107,4 +104,4 @@ const deleteBook = async (req: Request, res: Response, next: NextFunction) => {
 
 
 
-export { createBook, getBook, getBookById, updateBook, deleteBook }
+export { createBook, getBook, getBookById, updateBookById, deleteBook }

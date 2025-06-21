@@ -1,4 +1,4 @@
-import express from 'express'
+import express, { Application } from 'express'
 import mongoose from 'mongoose'
 import config from './app/config'
 import booksRoute from './app/modules/book/book.routes'
@@ -6,7 +6,7 @@ import borrowRoute from './app/modules/borrow/borrow.route'
 import { globalErrorHandler } from './app/middlewares/globalErrorHandler'
 
 
-const app = express()
+const app: Application = express()
 
 //middlewares
 app.use(express.json())
