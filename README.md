@@ -41,7 +41,7 @@ MONGODB_URI=mongodb://localhost:27017/library-db
 NODE_ENV=development
 ```
 
-- npm run dev
+- Run the server
 
 ```
 npm run dev

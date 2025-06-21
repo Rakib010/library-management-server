@@ -1,9 +1,9 @@
 import express from 'express'
 import mongoose from 'mongoose'
-import config from './config'
-import booksRoute from './modules/book/book.routes'
-import borrowRoute from './modules/borrow/borrow.route'
-import { globalErrorHandler } from './middlewares/globalErrorHandler'
+import config from './app/config'
+import booksRoute from './app/modules/book/book.routes'
+import borrowRoute from './app/modules/borrow/borrow.route'
+import { globalErrorHandler } from './app/middlewares/globalErrorHandler'
 
 
 const app = express()
