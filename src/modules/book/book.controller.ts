@@ -16,17 +16,18 @@ const createBook = async (req: Request, res: Response, next: NextFunction) => {
 
     } catch (error: any) {
         next(error)
-
     }
 }
 
-//Get All Books (filtering and sorting baki ashe )
+//Get All Books 
 const getBook = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const filter = req.query.filter
-        const sortBy = req.query.sortBy
+        const { filter, sort, limit, sortBy } = req.query
 
-        const data = await Book.find({ genre: filter }).sort({ copies: 1 }).limit(5)
+        const doFilter = filter ? { genre: filter } : {}
+        const sortOrder = sort === 'asc' ? 1 : -1
+
+        const data = await Book.find(doFilter).sort({ [sortBy as string]: sortOrder }).limit(Number(limit || 10))
 
         res.status(200).json({
             success: true,

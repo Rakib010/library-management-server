@@ -12,11 +12,11 @@ export const borrowSchema = new Schema<IBorrow, BorrowMethods>({
     quantity: {
         type: Number,
         required: true,
-        min: [1, "Quantity must be a positive whole number"]
-        /* validate: {
+        min: [1, "Quantity must be a positive number"],
+        validate: {
             validator: Number.isInteger,
             message: "Quantity must be a whole number"
-        } */
+        }
     },
     dueDate: { type: Date, required: true }
 }, {

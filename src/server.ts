@@ -3,15 +3,16 @@ import mongoose from 'mongoose'
 import config from './config'
 import booksRoute from './modules/book/book.routes'
 import borrowRoute from './modules/borrow/borrow.route'
+import { globalErrorHandler } from './middlewares/globalErrorHandler'
 
 
 const app = express()
 
 //middlewares
 app.use(express.json())
+app.use(globalErrorHandler)
 app.use(booksRoute)
 app.use(borrowRoute)
-
 
 
 app.get('/', (req, res) => {
