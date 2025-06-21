@@ -9,9 +9,10 @@ export const globalErrorHandler = (
     const statusCode = error.statusCode || 500;
 
     res.status(statusCode).json({
-        message: error.message,
         success: false,
+        message: error.message || "Something went wrong!",
         error: error,
-        errors: error.errors,
+        errors: error.errors || null, // for mongoose validation
+        stack: process.env.NODE_ENV === "development" ? error.stack : undefined,
     });
 };
